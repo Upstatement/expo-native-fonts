@@ -1,4 +1,4 @@
 node_modules
-plugin/build
+build
 *.tgz
 *.log
