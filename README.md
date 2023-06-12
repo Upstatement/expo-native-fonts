@@ -61,7 +61,7 @@ With `expo-native-fonts`, font files are loaded via native code. What does that 
 
 > 🚧 Under Construction 🚧
 
-- Font files have to be ttf (untested with otf)
+- Font files have to be ttf or otf (untested with others)
 - Family name keys must match the font file family
 
 ## Contributing

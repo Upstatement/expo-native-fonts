@@ -177,7 +177,7 @@ const withFontsXcodeProject: ConfigPlugin<Props> = (config, props) => {
       const file = new pbxFile(path.join(group.name, child.comment), opt);
       file.target = opt ? opt.target : undefined;
 
-      project.removeFromPbxFileSection(file); // PBXBuildFile
+      project.removeFromPbxBuildFileSection(file); // PBXBuildFile
       project.removeFromPbxFileReferenceSection(file); // PBXFileReference
       if (group) {
         if (groupId) {
