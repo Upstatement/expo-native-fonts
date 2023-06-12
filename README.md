@@ -1,55 +1,93 @@
 # expo-native-fonts
 
-Put a description of your Unimodule here
+> Load fonts on iOS and Android using native code.
 
-# API documentation
+Traditionally, loading fonts in an Expo project requires using the `expo-fonts` library. While this has historically been a great solution, it has to load the fonts at runtime which necessitates you to show the splash screen.
 
-- [Documentation for the main branch](https://github.com/expo/expo/blob/main/docs/pages/versions/unversioned/sdk/native-fonts.md)
-- [Documentation for the latest stable release](https://docs.expo.dev/versions/latest/sdk/native-fonts/)
+With `expo-native-fonts`, font files are loaded via native code. What does that mean?
 
-# Installation in managed Expo projects
+- Fonts will be available immediately at runtime (no more splash screen!)
+- Fonts can be referred to using font weight and style, rather than a static name (no more `Raleway-BoldItalic`!)
 
-For [managed](https://docs.expo.dev/archive/managed-vs-bare/) Expo projects, please follow the installation instructions in the [API documentation for the latest stable release](#api-documentation). If you follow the link and there is no documentation available then this library is not yet usable within managed projects &mdash; it is likely to be included in an upcoming Expo SDK release.
+## Installation
 
-# Installation in bare React Native projects
+1. Install the package:
 
-For bare React Native projects, you must ensure that you have [installed and configured the `expo` package](https://docs.expo.dev/bare/installing-expo-modules/) before continuing.
+   ```bash
+   yarn add expo-native-fonts
+   ```
 
-### Add the package to your npm dependencies
+2. Add your `*.ttf` files to a directory (we recommend `assets/fonts`):
 
-```
-npm install expo-native-fonts
-```
+   ```bash
+   app/
+   assets/
+   |- fonts/
+      |- Raleway-Black.ttf
+      |- Raleway-BlackItalic.ttf
+      |- ...
+   ```
 
-# Contributing
+3. Add the plugin to your `app.json` config:
 
-Contributions are very welcome! Please refer to guidelines described in the [contributing guide](https://github.com/expo/expo#contributing).
+   ```json
+   {
+     "expo": {
+       "plugins": [
+         [
+           "expo-native-fonts",
+           {
+             "Raleway": [
+               {
+                 "path": "./assets/fonts/Raleway-Black.ttf",
+                 "weight": 900
+               },
+               {
+                 "path": "./assets/fonts/Raleway-BlackItalic.ttf",
+                 "weight": 900,
+                 "style": "italic"
+               }
+             ]
+           }
+         ]
+       ]
+     }
+   }
+   ```
 
-# Testing
+4. Run your app!
 
-1. plugin dir: `yarn link`
-2. project dir: `yarn link expo-native-fonts`
-3. project dir: `yarn expo config --type introspect`
+## Gotchas
 
-# Example
+> 🚧 Under Construction 🚧
 
-```json
-{
-  "expo": {
-    "plugins": [
-      [
-        "expo-native-fonts",
-        {
-          "Raleway": [
-            {
-              "path": "./assets/fonts/Raleway-Black.ttf",
-              "weight": 900,
-              "style": "normal"
-            }
-          ]
-        }
-      ]
-    ]
-  }
-}
-```
+- Font files have to be ttf (untested with otf)
+- Family name keys must match the font file family
+
+## Contributing
+
+> 🚧 Under Construction 🚧
+
+### Testing
+
+1. In this repo, link the project:
+
+   ```bash
+   yarn link
+   ```
+
+2. In your example project repo, link the dependency:
+
+   ```bash
+   yarn link expo-native-fonts
+   ```
+
+3. In your example project repo, run the prebuild command:
+
+   ```bash
+   yarn expo prebuild --clean
+   ```
+
+## Credits
+
+Major props to [@jsamr](https://github.com/jsamr) for their documentation on supporting fonts natively: https://github.com/jsamr/react-native-font-demo
