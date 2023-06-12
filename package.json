@@ -1,0 +1,29 @@
+{
+  "name": "expo-native-fonts",
+  "version": "1.0.0",
+  "main": "app.plugin.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "dependencies": {
+    "xcode": "^3.0.1"
+  },
+  "devDependencies": {
+    "expo": "^47.0.0",
+    "expo-module-scripts": "^3.0.9"
+  },
+  "peerDependencies": {
+    "expo": ">=47.0.0"
+  },
+  "peerDependenciesMeta": {
+    "expo": {
+      "optional": true
+    }
+  }
+}
