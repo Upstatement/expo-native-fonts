@@ -1,8 +1,9 @@
 {
   "name": "expo-native-fonts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "app.plugin.js",
   "license": "MIT",
+  "homepage": "https://github.com/Upstatement/expo-native-fonts",
   "scripts": {
     "build": "expo-module build",
     "clean": "expo-module clean",
