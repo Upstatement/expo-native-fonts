@@ -6,8 +6,13 @@ Traditionally, loading fonts in an Expo project requires using the `expo-fonts` 
 
 With `expo-native-fonts`, font files are loaded via native code. What does that mean?
 
-- Fonts will be available immediately at runtime (no more splash screen!)
-- Fonts can be referred to using font weight and style, rather than a static name (no more `Raleway-BoldItalic`!)
+**Fonts will be available immediately at runtime.**
+
+> No more long splash screens!
+
+**You can change the font family, weight, and style individually.**
+
+> No more `fontFamily: 'Raleway-BoldItalic'`!
 
 ## Installation
 
@@ -17,7 +22,7 @@ With `expo-native-fonts`, font files are loaded via native code. What does that 
    yarn add expo-native-fonts
    ```
 
-2. Add your `*.ttf` files to a directory (we recommend `assets/fonts`):
+2. Add your font files to a directory (we recommend `assets/fonts`):
 
    ```bash
    app/
@@ -47,6 +52,7 @@ With `expo-native-fonts`, font files are loaded via native code. What does that 
                  "weight": 900,
                  "style": "italic"
                }
+               // ...
              ]
            }
          ]
@@ -55,20 +61,90 @@ With `expo-native-fonts`, font files are loaded via native code. What does that 
    }
    ```
 
-4. Run your app!
+4. Rebuild your app as described in the ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide
+
+5. Start using the newly-defined font in your style objects:
+
+   ```tsx
+   const styles = StyleSheet.create({
+     text: {
+       fontFamily: "Raleway",
+       fontWeight: "900",
+       fontStyle: "italic",
+     },
+   });
+   ```
 
 ## Gotchas
 
-> 🚧 Under Construction 🚧
+### Supported Font Files
 
-- Font files have to be ttf or otf (untested with others)
-- Family name keys must match the font file family
+This plugin has only been tested with `.ttf` and `.otf` files.
+
+The use of other file types may not work!
+
+### Font Family Name
+
+The key you use to define a family in the plugin config **must exactly match** the actual font family name defined in the font files.
+
+To find the family name:
+
+1. Install the `lcdf-typetools` package:
+
+   ```bash
+   brew install lcdf-typetools
+   ```
+
+2. Run the following on one of the font files:
+
+   ```bash
+   otfinfo --family Raleway-Regular.ttf
+   ```
+
+3. The printed value is the family name to use.
+
+   For example, if the command printed `Matter`, you should format your config like so:
+
+   ```json
+   {
+     "expo": {
+       "plugins": [
+         [
+           "expo-native-fonts",
+           {
+             "Matter": [
+               // ...
+             ]
+           }
+         ]
+       ]
+     }
+   }
+   ```
 
 ## Contributing
 
-> 🚧 Under Construction 🚧
+Check out our [Contributing](.github/CONTRIBUTING.md) guide for more information on reporting issues, submitting feedback, or contributing code.
+
+### Setup
+
+To set up the repository locally on your machine, follow these steps:
+
+1. Install the project dependencies:
+
+   ```bash
+   yarn
+   ```
+
+2. Create a new build:
+
+   ```bash
+   yarn build
+   ```
 
 ### Testing
+
+To test that the project works, set up an example project app using [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) and follow these steps:
 
 1. In this repo, link the project:
 

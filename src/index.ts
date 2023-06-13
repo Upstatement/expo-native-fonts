@@ -2,7 +2,6 @@ import path from "path";
 import fs from "fs/promises";
 import {
   ConfigPlugin,
-  ExportedConfigWithProps,
   withDangerousMod,
   withXcodeProject,
   withInfoPlist,
@@ -225,13 +224,14 @@ const withFontsInfoPlist: ConfigPlugin<Props> = (config, props) => {
 };
 
 const withNativeFonts: ConfigPlugin<Props> = (config, props) => {
+  // Apply Android config
+  config = withFontsXML(config, props);
+  config = withFontsMainApplication(config, props);
   // Apply iOS config
   config = withFontResources(config, props);
   config = withFontsXcodeProject(config, props);
   config = withFontsInfoPlist(config, props);
-  // Apply Android config
-  config = withFontsXML(config, props);
-  config = withFontsMainApplication(config, props);
+
   return config;
 };
 
