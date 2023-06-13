@@ -35,7 +35,7 @@ With `expo-native-fonts`, font files are loaded via native code. What does that 
 
 3. Add the plugin to your `app.json` config:
 
-   ```json
+   ```js
    {
      "expo": {
        "plugins": [
@@ -105,7 +105,7 @@ To find the family name:
 
    For example, if the command printed `Matter`, you should format your config like so:
 
-   ```json
+   ```js
    {
      "expo": {
        "plugins": [
